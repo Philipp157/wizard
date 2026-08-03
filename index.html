@@ -18,40 +18,94 @@
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     html,body{margin:0; min-height:100%; background:var(--bg); color:var(--txt); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}
-    body{padding: max(18px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));}
+    body{padding: max(14px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));}
     .app{max-width:980px;margin:0 auto;}
-    h1{font-size:clamp(32px,7vw,52px); line-height:1.05; margin:20px 0 8px; letter-spacing:-1px;}
-    h2{font-size:28px; margin:0 0 16px;}
-    p{color:var(--muted); font-size:18px; line-height:1.45; margin:8px 0;}
-    .top{display:flex; gap:14px; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
-    .pill{border:2px solid #5d4fd0; color:#e3dcff; background:rgba(124,108,255,.14); border-radius:999px; padding:12px 16px; font-weight:800; white-space:nowrap; margin-top:8px;}
-    .card{background:linear-gradient(180deg,var(--panel),#12182b); border:1.5px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:0 18px 44px var(--shadow); padding:18px; margin:18px 0;}
-    label{display:block;color:var(--muted);font-weight:800;font-size:18px;margin:14px 0 8px;}
+    h1{font-size:clamp(30px,7vw,52px); line-height:1.05; margin:16px 0 6px; letter-spacing:-1px;}
+    h2{font-size:26px; margin:0 0 14px;}
+    p{color:var(--muted); font-size:17px; line-height:1.4; margin:7px 0;}
+    .top{display:flex; gap:14px; justify-content:space-between; align-items:flex-start; margin-bottom:14px;}
+    .pill{border:2px solid #5d4fd0; color:#e3dcff; background:rgba(124,108,255,.14); border-radius:999px; padding:10px 14px; font-weight:900; white-space:nowrap; margin-top:8px;}
+    .card{background:linear-gradient(180deg,var(--panel),#12182b); border:1.5px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:0 18px 44px var(--shadow); padding:17px; margin:15px 0;}
+    label{display:block;color:var(--muted);font-weight:850;font-size:17px;margin:13px 0 7px;}
     input,select,button{font:inherit;}
-    select,input[type="text"],input[type="tel"],input[type="number"]{width:100%; background:#080e1e; color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:16px 18px; font-size:24px; font-weight:800; outline:none; min-height:64px;}
+    select,input[type="text"],input[type="tel"],input[type="number"]{width:100%; background:#080e1e; color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:15px 16px; font-size:22px; font-weight:850; outline:none; min-height:60px;}
     input:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(124,108,255,.18)}
-    .btn{background:var(--panel2); color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:15px 18px; font-weight:900; min-height:58px; cursor:pointer;}
+    .btn{background:var(--panel2); color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:13px 16px; font-weight:900; min-height:54px; cursor:pointer;}
     .btn.primary{background:linear-gradient(135deg,#8578ff,#6758ff); border-color:#8c80ff;}
     .btn.danger{background:rgba(255,107,125,.12); border-color:rgba(255,107,125,.45)}
     .btn.good{background:rgba(53,224,181,.12); border-color:rgba(53,224,181,.45)}
-    .buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
-    .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:6px;}
-    .ranking{display:grid; gap:10px;}
-    .rankrow{display:grid; grid-template-columns:52px 1fr auto; gap:10px; align-items:center; background:var(--panel2); border:1px solid rgba(148,163,184,.18); border-radius:18px; padding:12px 14px;}
-    .rankno{font-size:22px;font-weight:1000;color:var(--warn)} .rankname{font-size:22px;font-weight:900}.rankpts{font-size:22px;font-weight:1000;color:var(--good)}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-    .stat{background:var(--panel2);border:1px solid rgba(148,163,184,.18);border-radius:20px;padding:18px 20px;min-height:105px;}
-    .stat.wide{grid-column:1/-1}.stat .k{color:var(--muted);font-size:16px;text-transform:uppercase;letter-spacing:2px;font-weight:1000}.stat .v{font-size:42px;font-weight:1000;margin-top:8px;}
-    .roundHead{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(148,163,184,.18);padding-bottom:14px;margin-bottom:16px;}
-    .roundTitle{font-size:28px;font-weight:1000}.roundSub{color:var(--muted);font-size:18px;margin-top:2px}.roundNav{display:flex;gap:10px}.roundNav .btn{min-width:66px;padding:10px 14px;font-size:28px}
-    .players{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;}
-    .player{background:var(--panel2);border:1.5px solid rgba(148,163,184,.18);border-radius:20px;padding:14px;}
-    .playerTop{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.playerName{font-size:22px;font-weight:1000}.total{font-size:18px;color:var(--muted);font-weight:900}.score{color:var(--good);font-weight:1000;font-size:26px;min-width:74px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:12px;}
-    .entryGrid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.entryGrid label{font-size:15px;margin:0 0 6px}.entryGrid input{font-size:28px;text-align:center;padding:12px;min-height:60px}.smallmuted{font-size:15px;color:var(--muted)}
-    .roundSum{font-size:20px;font-weight:900;margin:12px 0 0;color:var(--muted)} .ok{color:var(--good)} .bad{color:var(--bad)}
-    details summary{cursor:pointer;font-weight:1000;font-size:22px;margin-bottom:12px}.tableWrap{overflow:auto;border-radius:16px;border:1px solid rgba(148,163,184,.18)}
-    table{width:100%;border-collapse:collapse;min-width:720px;background:#10172a}th,td{border-bottom:1px solid rgba(148,163,184,.14);padding:10px;text-align:center}th{position:sticky;top:0;background:#1c2540;color:var(--muted)}td:first-child,th:first-child{text-align:left;font-weight:900}.footerNote{font-size:14px;color:var(--muted);text-align:center;margin:22px 0 4px}
-    @media(max-width:620px){body{padding-left:12px;padding-right:12px}.top{display:block}.pill{display:inline-block}.card{padding:16px}.stats{grid-template-columns:1fr 1fr}.players{grid-template-columns:1fr}.entryGrid{grid-template-columns:1fr 1fr}.entryGrid .score{grid-column:1/-1;width:100%;}.roundHead{align-items:flex-start}.roundNav .btn{min-width:58px}.names{grid-template-columns:1fr}select,input[type="text"],input[type="tel"],input[type="number"]{font-size:22px}.stat .v{font-size:36px}}
+    .buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+    .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:6px;}
+    details summary{cursor:pointer;font-weight:1000;font-size:22px;margin-bottom:10px;list-style:none;}
+    details summary::-webkit-details-marker{display:none;}
+    summary .sumIcon{display:inline-block; width:1.45em; color:var(--warn);}
+    details[open] summary .sumIcon::before{content:"−";}
+    details:not([open]) summary .sumIcon::before{content:"+";}
+
+    .roundHead{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;border-bottom:1px solid rgba(148,163,184,.18);padding-bottom:12px;margin-bottom:13px;}
+    .roundTitle{font-size:28px;font-weight:1000}.roundSub{color:var(--muted);font-size:17px;margin-top:2px}.roundNav{display:flex;gap:8px}.roundNav .btn{min-width:62px;padding:9px 12px;font-size:26px}
+    .quickStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+    .qstat{background:var(--panel2);border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:11px 10px;text-align:center;}
+    .qstat .k{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.8px;font-weight:1000}.qstat .v{font-size:27px;font-weight:1000;margin-top:3px;line-height:1;}
+    .players{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:12px;}
+    .player{background:var(--panel2);border:1.5px solid rgba(148,163,184,.18);border-radius:20px;padding:13px;}
+    .playerTop{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:9px}.playerName{font-size:21px;font-weight:1000;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.total{font-size:17px;color:var(--muted);font-weight:900;white-space:nowrap}.score{color:var(--good);font-weight:1000;font-size:25px;min-width:70px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:10px;min-height:56px;display:flex;align-items:center;justify-content:center;}
+    .entryGrid{display:grid;grid-template-columns:1fr 1fr 76px;gap:8px;align-items:end}.entryGrid label{font-size:14px;margin:0 0 5px}.entryGrid input{font-size:27px;text-align:center;padding:10px;min-height:56px;border-radius:16px;}
+    .roundSum{font-size:18px;font-weight:900;margin:12px 0 0;color:var(--muted);line-height:1.35}.ok{color:var(--good)} .bad{color:var(--bad)}
+
+    .ranking{display:grid; gap:9px;}
+    .rankrow{display:grid; grid-template-columns:46px 1fr auto; gap:9px; align-items:center; background:var(--panel2); border:1px solid rgba(148,163,184,.18); border-radius:16px; padding:10px 12px;}
+    .rankno{font-size:21px;font-weight:1000;color:var(--warn)} .rankname{font-size:20px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rankpts{font-size:21px;font-weight:1000;color:var(--good)}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+    .stat{background:var(--panel2);border:1px solid rgba(148,163,184,.18);border-radius:18px;padding:15px 17px;min-height:92px;}
+    .stat.wide{grid-column:1/-1}.stat .k{color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:1.5px;font-weight:1000}.stat .v{font-size:36px;font-weight:1000;margin-top:6px;line-height:1;}
+    .tableWrap{overflow:auto;border-radius:16px;border:1px solid rgba(148,163,184,.18);-webkit-overflow-scrolling:touch}
+    table{width:100%;border-collapse:collapse;min-width:720px;background:#10172a}th,td{border-bottom:1px solid rgba(148,163,184,.14);padding:10px;text-align:center}th{position:sticky;top:0;background:#1c2540;color:var(--muted)}td:first-child,th:first-child{text-align:left;font-weight:900}.footerNote{font-size:14px;color:var(--muted);text-align:center;margin:20px 0 4px}
+
+    @media(max-width:700px){
+      body{padding: max(8px, env(safe-area-inset-top)) 8px max(18px, env(safe-area-inset-bottom));}
+      .app{max-width:100%;}
+      h1{font-size:26px;margin:8px 0 2px;letter-spacing:-.3px;}
+      h2{font-size:20px;margin-bottom:9px;}
+      p{font-size:13px;line-height:1.25;margin:4px 0;}
+      .top{display:flex;align-items:center;margin-bottom:6px;gap:8px;}
+      .top p{display:none;}
+      .pill{font-size:12px;padding:7px 9px;margin:4px 0 0;border-width:1.5px;}
+      .card{padding:10px;margin:8px 0;border-radius:16px;box-shadow:none;}
+      label{font-size:13px;margin:8px 0 5px;}
+      select,input[type="text"],input[type="tel"],input[type="number"]{font-size:18px;border-radius:14px;min-height:48px;padding:10px 11px;}
+      .btn{border-radius:14px;min-height:46px;padding:9px 11px;font-size:15px;}
+      .buttons{gap:7px;margin-top:9px}.buttons .btn{flex:1 1 auto;}
+      details summary{font-size:18px;margin-bottom:7px;}
+      .names{grid-template-columns:1fr 1fr;gap:7px;}
+      .names input{font-size:16px;min-height:44px;}
+
+      #entryCard{margin-top:6px;}
+      .roundHead{grid-template-columns:1fr auto;gap:8px;padding-bottom:8px;margin-bottom:9px;}
+      .roundTitle{font-size:22px;}.roundSub{font-size:13px;}
+      .roundNav{gap:6px}.roundNav .btn{min-width:48px;font-size:21px;padding:6px 8px;min-height:42px;}
+      .quickStats{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:9px;}
+      .qstat{border-radius:12px;padding:8px 6px;}
+      .qstat .k{font-size:10px;letter-spacing:.3px}.qstat .v{font-size:22px;}
+      .players{grid-template-columns:1fr;gap:8px;}
+      .player{padding:9px;border-radius:15px;}
+      .playerTop{margin-bottom:6px;}.playerName{font-size:18px;}.total{font-size:13px;}
+      .entryGrid{grid-template-columns:1fr 1fr 64px;gap:6px;}
+      .entryGrid label{font-size:11px;margin-bottom:3px;text-align:center;}
+      .entryGrid input{font-size:24px;min-height:50px;padding:7px;border-radius:13px;}
+      .score{font-size:21px;min-width:60px;min-height:50px;padding:7px;border-radius:13px;}
+      .roundSum{font-size:14px;margin-top:8px;}
+
+      .ranking{gap:6px;}
+      .rankrow{grid-template-columns:34px 1fr auto;padding:8px 9px;border-radius:13px;}
+      .rankno,.rankname,.rankpts{font-size:17px;}
+      .stats{grid-template-columns:repeat(3,1fr);gap:6px;}
+      .stat{min-height:64px;padding:9px 7px;text-align:center;border-radius:13px;}
+      .stat.wide{grid-column:auto;}
+      .stat .k{font-size:9px;letter-spacing:.2px;line-height:1.1}.stat .v{font-size:22px;margin-top:4px;}
+      table{min-width:650px;font-size:13px;} th,td{padding:7px 6px;}
+      .footerNote{font-size:11px;margin:13px 0 2px;}
+    }
   </style>
 </head>
 <body>
@@ -61,49 +115,58 @@
     <div class="pill">⚡ Auto-Save</div>
   </div>
 
-  <section class="card">
-    <label for="playerCount">Spieler</label>
-    <select id="playerCount" aria-label="Spieleranzahl">
-      <option value="3">3 Spieler</option><option value="4" selected>4 Spieler</option><option value="5">5 Spieler</option><option value="6">6 Spieler</option>
-    </select>
-    <label>Spielernamen</label>
-    <div class="names" id="names"></div>
-    <div class="buttons"><button class="btn good" id="newGame">Neues Spiel</button><button class="btn" id="exportBtn">Export</button><button class="btn" id="importBtn">Import</button><input id="importFile" type="file" accept="application/json" style="display:none"></div>
-    <p>Wertung: richtige Ansage = 20 + 10 × Ansage. Falsche Ansage = −10 × Differenz. Rundenanzahl automatisch nach Spieleranzahl und 60 Karten.</p>
-  </section>
-
-  <section class="card"><h2>Live-Ranking</h2><div class="ranking" id="ranking"></div></section>
-
-  <section class="card">
-    <h2>Aktuelle Runde</h2>
-    <div class="stats">
-      <div class="stat"><div class="k">Runde</div><div class="v" id="roundNo">1</div></div>
-      <div class="stat"><div class="k">Karten</div><div class="v" id="cardsNo">1</div></div>
-      <div class="stat wide"><div class="k">Ansage − tatsächliche Stiche</div><div class="v" id="diffNo">0</div></div>
-      <div class="stat"><div class="k">Angesagt</div><div class="v" id="bidSum">0</div></div>
-      <div class="stat"><div class="k">Tatsächlich</div><div class="v" id="trickSum">0</div></div>
-      <div class="stat wide"><div class="k">Gesamt Runden</div><div class="v" id="roundsTotal">15</div></div>
-    </div>
-  </section>
-
   <section class="card" id="entryCard">
     <div class="roundHead">
       <div><div class="roundTitle" id="roundTitle">Runde 1</div><div class="roundSub" id="roundSub">1 Karte pro Spieler</div></div>
       <div class="roundNav"><button class="btn" id="prevRound" aria-label="Vorige Runde">←</button><button class="btn primary" id="nextRound" aria-label="Nächste Runde">→</button></div>
     </div>
+    <div class="quickStats">
+      <div class="qstat"><div class="k">Angesagt</div><div class="v" id="bidSumTop">0</div></div>
+      <div class="qstat"><div class="k">Tatsächl.</div><div class="v" id="trickSumTop">0</div></div>
+      <div class="qstat"><div class="k">Differenz</div><div class="v" id="diffNoTop">0</div></div>
+    </div>
     <div class="players" id="players"></div>
     <div class="roundSum" id="roundCheck"></div>
   </section>
 
-  <section class="card"><details><summary>Gesamttabelle anzeigen</summary><div class="tableWrap"><table id="summaryTable"></table></div></details></section>
-  <div class="footerNote">Wizard Spielstand · GitHub Pages / PWA-Version</div>
+  <section class="card"><h2>Live-Ranking</h2><div class="ranking" id="ranking"></div></section>
+
+  <section class="card">
+    <details>
+      <summary><span class="sumIcon"></span>Spieler & Einstellungen</summary>
+      <label for="playerCount">Spieleranzahl</label>
+      <select id="playerCount" aria-label="Spieleranzahl">
+        <option value="3">3 Spieler</option><option value="4" selected>4 Spieler</option><option value="5">5 Spieler</option><option value="6">6 Spieler</option>
+      </select>
+      <label>Spielernamen</label>
+      <div class="names" id="names"></div>
+      <div class="buttons"><button class="btn good" id="newGame">Neues Spiel</button><button class="btn" id="exportBtn">Export</button><button class="btn" id="importBtn">Import</button><input id="importFile" type="file" accept="application/json" style="display:none"></div>
+      <p>Wertung: richtige Ansage = 20 + 10 × Ansage. Falsche Ansage = −10 × Differenz.</p>
+    </details>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary><span class="sumIcon"></span>Rundenwerte</summary>
+      <div class="stats">
+        <div class="stat"><div class="k">Runde</div><div class="v" id="roundNo">1</div></div>
+        <div class="stat"><div class="k">Karten</div><div class="v" id="cardsNo">1</div></div>
+        <div class="stat"><div class="k">Gesamt</div><div class="v" id="roundsTotal">15</div></div>
+        <div class="stat"><div class="k">Angesagt</div><div class="v" id="bidSum">0</div></div>
+        <div class="stat"><div class="k">Tatsächlich</div><div class="v" id="trickSum">0</div></div>
+        <div class="stat"><div class="k">Differenz</div><div class="v" id="diffNo">0</div></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="card"><details><summary><span class="sumIcon"></span>Gesamttabelle anzeigen</summary><div class="tableWrap"><table id="summaryTable"></table></div></details></section>
+  <div class="footerNote">Wizard Spielstand · GitHub Pages / PWA-Version v5</div>
 </div>
 <script>
 (function(){
   const KEY='wizard_score_pwa_v1';
   const defaults=['Madleine','Philipp','Kilian','Spieler 4','Spieler 5','Spieler 6'];
   let state={playerCount:4,names:defaults.slice(),round:0,rounds:[],updatedAt:Date.now()};
-  let renderTimer=null;
   const $=id=>document.getElementById(id);
   const pc=$('playerCount'), namesEl=$('names'), playersEl=$('players'), rankingEl=$('ranking');
   function maxRounds(){return Math.floor(60/state.playerCount)}
@@ -113,9 +176,15 @@
   function totals(){ensureRounds(); let a=Array(state.playerCount).fill(0); for(const r of state.rounds){for(let i=0;i<state.playerCount;i++)a[i]+=score(r.bids[i],r.tricks[i]);} return a;}
   function save(){state.updatedAt=Date.now(); localStorage.setItem(KEY,JSON.stringify(state));}
   function load(){try{const raw=localStorage.getItem(KEY); if(raw){const s=JSON.parse(raw); state={...state,...s};}}catch(e){} ensureRounds();}
-  function debounceRender(){clearTimeout(renderTimer); renderTimer=setTimeout(render,35)}
   function sanitizeMax(inp,max){let v=String(inp.value||'').replace(/[^0-9]/g,''); if(v!=='' && parseInt(v,10)>max)v=String(max); inp.value=v; return v;}
-  function updateCurrentStats(){ensureRounds(); const r=state.rounds[state.round], cards=state.round+1; let bs=0,ts=0; for(let i=0;i<state.playerCount;i++){bs+=num(r.bids[i])||0;ts+=num(r.tricks[i])||0;} $('roundNo').textContent=state.round+1; $('cardsNo').textContent=cards; $('roundsTotal').textContent=maxRounds(); $('bidSum').textContent=bs; $('trickSum').textContent=ts; $('diffNo').textContent=bs-ts; $('diffNo').className='v '+(bs===ts?'ok':'bad'); $('roundTitle').textContent='Runde '+(state.round+1); $('roundSub').textContent=cards+' Karte'+(cards===1?'':'n')+' pro Spieler'; const check=$('roundCheck'); check.innerHTML='Runde: angesagt <b>'+bs+'</b>, tatsächlich <b>'+ts+'</b>, Differenz <b class="'+(bs===ts?'ok':'bad')+'">'+(bs-ts)+'</b>';}
+  function updateCurrentStats(){ensureRounds(); const r=state.rounds[state.round], cards=state.round+1; let bs=0,ts=0; for(let i=0;i<state.playerCount;i++){bs+=num(r.bids[i])||0;ts+=num(r.tricks[i])||0;} 
+    $('roundNo').textContent=state.round+1; $('cardsNo').textContent=cards; $('roundsTotal').textContent=maxRounds();
+    $('bidSum').textContent=bs; $('trickSum').textContent=ts; $('diffNo').textContent=bs-ts;
+    $('bidSumTop').textContent=bs; $('trickSumTop').textContent=ts; $('diffNoTop').textContent=bs-ts;
+    const cls='v '+(bs===ts?'ok':'bad'); $('diffNo').className=cls; $('diffNoTop').className=cls;
+    $('roundTitle').textContent='Runde '+(state.round+1); $('roundSub').textContent=cards+' Karte'+(cards===1?'':'n')+' pro Spieler';
+    const check=$('roundCheck'); check.innerHTML='Angesagt <b>'+bs+'</b> · Tatsächlich <b>'+ts+'</b> · Differenz <b class="'+(bs===ts?'ok':'bad')+'">'+(bs-ts)+'</b>';
+  }
   function renderNames(){namesEl.innerHTML=''; for(let i=0;i<state.playerCount;i++){const inp=document.createElement('input'); inp.type='text'; inp.value=state.names[i]||('Spieler '+(i+1)); inp.placeholder='Spieler '+(i+1); inp.addEventListener('input',()=>{state.names[i]=inp.value||('Spieler '+(i+1)); save(); renderLight();}); namesEl.appendChild(inp);}}
   function renderPlayers(){const r=state.rounds[state.round], cards=state.round+1, total=totals(); playersEl.innerHTML=''; for(let i=0;i<state.playerCount;i++){const wrap=document.createElement('div'); wrap.className='player'; wrap.innerHTML='<div class="playerTop"><div class="playerName">'+escapeHtml(state.names[i]||('Spieler '+(i+1)))+'</div><div class="total">Gesamt: <span class="ptotal">'+total[i]+'</span></div></div><div class="entryGrid"><div><label>Ansage</label><input class="bid" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="'+(r.bids[i]??'')+'"></div><div><label>Stiche</label><input class="trick" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="'+(r.tricks[i]??'')+'"></div><div><label>Punkte</label><div class="score">'+score(r.bids[i],r.tricks[i])+'</div></div></div>';
       const bid=wrap.querySelector('.bid'), trick=wrap.querySelector('.trick'), sc=wrap.querySelector('.score');
