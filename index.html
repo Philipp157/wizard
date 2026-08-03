@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Wizard" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <title>Wizard Spielstand</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#151c31; --panel2:#202940; --line:#34415f;
+      --txt:#f4f7ff; --muted:#b6c0d4; --accent:#7c6cff; --good:#35e0b5;
+      --bad:#ff6b7d; --warn:#ffd166; --shadow: rgba(0,0,0,.25);
+      --radius:22px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0; min-height:100%; background:var(--bg); color:var(--txt); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}
+    body{padding: max(18px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));}
+    .app{max-width:980px;margin:0 auto;}
+    h1{font-size:clamp(32px,7vw,52px); line-height:1.05; margin:20px 0 8px; letter-spacing:-1px;}
+    h2{font-size:28px; margin:0 0 16px;}
+    p{color:var(--muted); font-size:18px; line-height:1.45; margin:8px 0;}
+    .top{display:flex; gap:14px; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
+    .pill{border:2px solid #5d4fd0; color:#e3dcff; background:rgba(124,108,255,.14); border-radius:999px; padding:12px 16px; font-weight:800; white-space:nowrap; margin-top:8px;}
+    .card{background:linear-gradient(180deg,var(--panel),#12182b); border:1.5px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:0 18px 44px var(--shadow); padding:18px; margin:18px 0;}
+    label{display:block;color:var(--muted);font-weight:800;font-size:18px;margin:14px 0 8px;}
+    input,select,button{font:inherit;}
+    select,input[type="text"],input[type="tel"],input[type="number"]{width:100%; background:#080e1e; color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:16px 18px; font-size:24px; font-weight:800; outline:none; min-height:64px;}
+    input:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(124,108,255,.18)}
+    .btn{background:var(--panel2); color:var(--txt); border:2px solid var(--line); border-radius:18px; padding:15px 18px; font-weight:900; min-height:58px; cursor:pointer;}
+    .btn.primary{background:linear-gradient(135deg,#8578ff,#6758ff); border-color:#8c80ff;}
+    .btn.danger{background:rgba(255,107,125,.12); border-color:rgba(255,107,125,.45)}
+    .btn.good{background:rgba(53,224,181,.12); border-color:rgba(53,224,181,.45)}
+    .buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
+    .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:6px;}
+    .ranking{display:grid; gap:10px;}
+    .rankrow{display:grid; grid-template-columns:52px 1fr auto; gap:10px; align-items:center; background:var(--panel2); border:1px solid rgba(148,163,184,.18); border-radius:18px; padding:12px 14px;}
+    .rankno{font-size:22px;font-weight:1000;color:var(--warn)} .rankname{font-size:22px;font-weight:900}.rankpts{font-size:22px;font-weight:1000;color:var(--good)}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .stat{background:var(--panel2);border:1px solid rgba(148,163,184,.18);border-radius:20px;padding:18px 20px;min-height:105px;}
+    .stat.wide{grid-column:1/-1}.stat .k{color:var(--muted);font-size:16px;text-transform:uppercase;letter-spacing:2px;font-weight:1000}.stat .v{font-size:42px;font-weight:1000;margin-top:8px;}
+    .roundHead{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(148,163,184,.18);padding-bottom:14px;margin-bottom:16px;}
+    .roundTitle{font-size:28px;font-weight:1000}.roundSub{color:var(--muted);font-size:18px;margin-top:2px}.roundNav{display:flex;gap:10px}.roundNav .btn{min-width:66px;padding:10px 14px;font-size:28px}
+    .players{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;}
+    .player{background:var(--panel2);border:1.5px solid rgba(148,163,184,.18);border-radius:20px;padding:14px;}
+    .playerTop{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.playerName{font-size:22px;font-weight:1000}.total{font-size:18px;color:var(--muted);font-weight:900}.score{color:var(--good);font-weight:1000;font-size:26px;min-width:74px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:12px;}
+    .entryGrid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.entryGrid label{font-size:15px;margin:0 0 6px}.entryGrid input{font-size:28px;text-align:center;padding:12px;min-height:60px}.smallmuted{font-size:15px;color:var(--muted)}
+    .roundSum{font-size:20px;font-weight:900;margin:12px 0 0;color:var(--muted)} .ok{color:var(--good)} .bad{color:var(--bad)}
+    details summary{cursor:pointer;font-weight:1000;font-size:22px;margin-bottom:12px}.tableWrap{overflow:auto;border-radius:16px;border:1px solid rgba(148,163,184,.18)}
+    table{width:100%;border-collapse:collapse;min-width:720px;background:#10172a}th,td{border-bottom:1px solid rgba(148,163,184,.14);padding:10px;text-align:center}th{position:sticky;top:0;background:#1c2540;color:var(--muted)}td:first-child,th:first-child{text-align:left;font-weight:900}.footerNote{font-size:14px;color:var(--muted);text-align:center;margin:22px 0 4px}
+    @media(max-width:620px){body{padding-left:12px;padding-right:12px}.top{display:block}.pill{display:inline-block}.card{padding:16px}.stats{grid-template-columns:1fr 1fr}.players{grid-template-columns:1fr}.entryGrid{grid-template-columns:1fr 1fr}.entryGrid .score{grid-column:1/-1;width:100%;}.roundHead{align-items:flex-start}.roundNav .btn{min-width:58px}.names{grid-template-columns:1fr}select,input[type="text"],input[type="tel"],input[type="number"]{font-size:22px}.stat .v{font-size:36px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div><h1>Wizard Spielstand</h1><p>Mobile Eingabe für Ansage und tatsächliche Stiche. Punkte, Ranking und Stich-Differenzen werden live berechnet.</p></div>
+    <div class="pill">⚡ Auto-Save</div>
+  </div>
+
+  <section class="card">
+    <label for="playerCount">Spieler</label>
+    <select id="playerCount" aria-label="Spieleranzahl">
+      <option value="3">3 Spieler</option><option value="4" selected>4 Spieler</option><option value="5">5 Spieler</option><option value="6">6 Spieler</option>
+    </select>
+    <label>Spielernamen</label>
+    <div class="names" id="names"></div>
+    <div class="buttons"><button class="btn good" id="newGame">Neues Spiel</button><button class="btn" id="exportBtn">Export</button><button class="btn" id="importBtn">Import</button><input id="importFile" type="file" accept="application/json" style="display:none"></div>
+    <p>Wertung: richtige Ansage = 20 + 10 × Ansage. Falsche Ansage = −10 × Differenz. Rundenanzahl automatisch nach Spieleranzahl und 60 Karten.</p>
+  </section>
+
+  <section class="card"><h2>Live-Ranking</h2><div class="ranking" id="ranking"></div></section>
+
+  <section class="card">
+    <h2>Aktuelle Runde</h2>
+    <div class="stats">
+      <div class="stat"><div class="k">Runde</div><div class="v" id="roundNo">1</div></div>
+      <div class="stat"><div class="k">Karten</div><div class="v" id="cardsNo">1</div></div>
+      <div class="stat wide"><div class="k">Ansage − tatsächliche Stiche</div><div class="v" id="diffNo">0</div></div>
+      <div class="stat"><div class="k">Angesagt</div><div class="v" id="bidSum">0</div></div>
+      <div class="stat"><div class="k">Tatsächlich</div><div class="v" id="trickSum">0</div></div>
+      <div class="stat wide"><div class="k">Gesamt Runden</div><div class="v" id="roundsTotal">15</div></div>
+    </div>
+  </section>
+
+  <section class="card" id="entryCard">
+    <div class="roundHead">
+      <div><div class="roundTitle" id="roundTitle">Runde 1</div><div class="roundSub" id="roundSub">1 Karte pro Spieler</div></div>
+      <div class="roundNav"><button class="btn" id="prevRound" aria-label="Vorige Runde">←</button><button class="btn primary" id="nextRound" aria-label="Nächste Runde">→</button></div>
+    </div>
+    <div class="players" id="players"></div>
+    <div class="roundSum" id="roundCheck"></div>
+  </section>
+
+  <section class="card"><details><summary>Gesamttabelle anzeigen</summary><div class="tableWrap"><table id="summaryTable"></table></div></details></section>
+  <div class="footerNote">Wizard Spielstand · GitHub Pages / PWA-Version</div>
+</div>
+<script>
+(function(){
+  const KEY='wizard_score_pwa_v1';
+  const defaults=['Madleine','Philipp','Kilian','Spieler 4','Spieler 5','Spieler 6'];
+  let state={playerCount:4,names:defaults.slice(),round:0,rounds:[],updatedAt:Date.now()};
+  let renderTimer=null;
+  const $=id=>document.getElementById(id);
+  const pc=$('playerCount'), namesEl=$('names'), playersEl=$('players'), rankingEl=$('ranking');
+  function maxRounds(){return Math.floor(60/state.playerCount)}
+  function ensureRounds(){const n=maxRounds(); while(state.rounds.length<n){state.rounds.push({bids:Array(state.playerCount).fill(''),tricks:Array(state.playerCount).fill('')});} state.rounds=state.rounds.slice(0,n); state.rounds.forEach(r=>{r.bids=r.bids.slice(0,state.playerCount);r.tricks=r.tricks.slice(0,state.playerCount);while(r.bids.length<state.playerCount)r.bids.push('');while(r.tricks.length<state.playerCount)r.tricks.push('');}); if(state.round>=n)state.round=n-1; if(state.round<0)state.round=0;}
+  function num(v){if(v===''||v===null||v===undefined)return null; const n=parseInt(String(v).replace(/[^0-9-]/g,''),10); return Number.isFinite(n)?n:null}
+  function score(b,t){b=num(b);t=num(t); if(b===null||t===null)return 0; if(b===t)return 20+10*b; return -10*Math.abs(b-t)}
+  function totals(){ensureRounds(); let a=Array(state.playerCount).fill(0); for(const r of state.rounds){for(let i=0;i<state.playerCount;i++)a[i]+=score(r.bids[i],r.tricks[i]);} return a;}
+  function save(){state.updatedAt=Date.now(); localStorage.setItem(KEY,JSON.stringify(state));}
+  function load(){try{const raw=localStorage.getItem(KEY); if(raw){const s=JSON.parse(raw); state={...state,...s};}}catch(e){} ensureRounds();}
+  function debounceRender(){clearTimeout(renderTimer); renderTimer=setTimeout(render,35)}
+  function sanitizeMax(inp,max){let v=String(inp.value||'').replace(/[^0-9]/g,''); if(v!=='' && parseInt(v,10)>max)v=String(max); inp.value=v; return v;}
+  function updateCurrentStats(){ensureRounds(); const r=state.rounds[state.round], cards=state.round+1; let bs=0,ts=0; for(let i=0;i<state.playerCount;i++){bs+=num(r.bids[i])||0;ts+=num(r.tricks[i])||0;} $('roundNo').textContent=state.round+1; $('cardsNo').textContent=cards; $('roundsTotal').textContent=maxRounds(); $('bidSum').textContent=bs; $('trickSum').textContent=ts; $('diffNo').textContent=bs-ts; $('diffNo').className='v '+(bs===ts?'ok':'bad'); $('roundTitle').textContent='Runde '+(state.round+1); $('roundSub').textContent=cards+' Karte'+(cards===1?'':'n')+' pro Spieler'; const check=$('roundCheck'); check.innerHTML='Runde: angesagt <b>'+bs+'</b>, tatsächlich <b>'+ts+'</b>, Differenz <b class="'+(bs===ts?'ok':'bad')+'">'+(bs-ts)+'</b>';}
+  function renderNames(){namesEl.innerHTML=''; for(let i=0;i<state.playerCount;i++){const inp=document.createElement('input'); inp.type='text'; inp.value=state.names[i]||('Spieler '+(i+1)); inp.placeholder='Spieler '+(i+1); inp.addEventListener('input',()=>{state.names[i]=inp.value||('Spieler '+(i+1)); save(); renderLight();}); namesEl.appendChild(inp);}}
+  function renderPlayers(){const r=state.rounds[state.round], cards=state.round+1, total=totals(); playersEl.innerHTML=''; for(let i=0;i<state.playerCount;i++){const wrap=document.createElement('div'); wrap.className='player'; wrap.innerHTML='<div class="playerTop"><div class="playerName">'+escapeHtml(state.names[i]||('Spieler '+(i+1)))+'</div><div class="total">Gesamt: <span class="ptotal">'+total[i]+'</span></div></div><div class="entryGrid"><div><label>Ansage</label><input class="bid" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="'+(r.bids[i]??'')+'"></div><div><label>Stiche</label><input class="trick" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="'+(r.tricks[i]??'')+'"></div><div><label>Punkte</label><div class="score">'+score(r.bids[i],r.tricks[i])+'</div></div></div>';
+      const bid=wrap.querySelector('.bid'), trick=wrap.querySelector('.trick'), sc=wrap.querySelector('.score');
+      const apply=()=>{r.bids[i]=sanitizeMax(bid,cards); r.tricks[i]=sanitizeMax(trick,cards); sc.textContent=score(r.bids[i],r.tricks[i]); save(); renderLight();};
+      ['input','keyup','change','blur','touchend'].forEach(ev=>{bid.addEventListener(ev,apply,{passive:true});trick.addEventListener(ev,apply,{passive:true});}); playersEl.appendChild(wrap);}}
+  function renderRanking(){const total=totals(); const arr=total.map((p,i)=>({i,p,n:state.names[i]||('Spieler '+(i+1))})).sort((a,b)=>b.p-a.p); rankingEl.innerHTML=arr.map((x,k)=>'<div class="rankrow"><div class="rankno">'+(k+1)+'.</div><div class="rankname">'+escapeHtml(x.n)+'</div><div class="rankpts">'+x.p+'</div></div>').join('');}
+  function renderTable(){let html='<thead><tr><th>Runde</th><th>Karten</th>'; for(let i=0;i<state.playerCount;i++)html+='<th>'+escapeHtml(state.names[i]||('Spieler '+(i+1)))+'</th>'; html+='</tr></thead><tbody>'; for(let r=0;r<maxRounds();r++){html+='<tr><td>'+(r+1)+'</td><td>'+(r+1)+'</td>'; for(let i=0;i<state.playerCount;i++){const rr=state.rounds[r]; html+='<td>A '+(rr.bids[i]||'–')+' / S '+(rr.tricks[i]||'–')+'<br><b>'+score(rr.bids[i],rr.tricks[i])+'</b></td>';} html+='</tr>';} const total=totals(); html+='<tr><td colspan="2"><b>Gesamt</b></td>'; for(let i=0;i<state.playerCount;i++)html+='<td><b>'+total[i]+'</b></td>'; html+='</tr></tbody>'; $('summaryTable').innerHTML=html;}
+  function renderLight(){updateCurrentStats();renderRanking();renderTable(); const total=totals(); document.querySelectorAll('.ptotal').forEach((el,i)=>el.textContent=total[i]);}
+  function render(){ensureRounds(); pc.value=String(state.playerCount); renderNames(); renderPlayers(); renderLight();}
+  function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  pc.addEventListener('change',()=>{state.playerCount=parseInt(pc.value,10); ensureRounds(); save(); render();});
+  $('prevRound').addEventListener('click',()=>{if(state.round>0){state.round--;save();render();$('entryCard').scrollIntoView({behavior:'smooth',block:'start'});}});
+  $('nextRound').addEventListener('click',()=>{if(state.round<maxRounds()-1){state.round++;save();render();$('entryCard').scrollIntoView({behavior:'smooth',block:'start'});}});
+  $('newGame').addEventListener('click',()=>{if(confirm('Neues Spiel starten? Aktueller Spielstand wird gelöscht.')){const oldNames=state.names.slice(); state={playerCount:state.playerCount,names:oldNames,round:0,rounds:[],updatedAt:Date.now()}; ensureRounds(); save(); render();}});
+  $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='wizard-spielstand.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);});
+  $('importBtn').addEventListener('click',()=>$('importFile').click());
+  $('importFile').addEventListener('change',async e=>{const f=e.target.files[0]; if(!f)return; try{state=JSON.parse(await f.text()); ensureRounds(); save(); render();}catch(err){alert('Import nicht möglich.');}});
+  load(); render();
+  if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+})();
+</script>
+</body>
+</html>
