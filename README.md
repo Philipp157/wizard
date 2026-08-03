@@ -1,6 +1,6 @@
 # Wizard Spielstand App
 
-Mobile-optimierte GitHub-Pages/PWA-Version.
+Mobile-optimierte GitHub-Pages/PWA-Version v6. Eingabefelder sind für iPhone kompakt nebeneinander fixiert.
 
 ## Update auf GitHub
 
